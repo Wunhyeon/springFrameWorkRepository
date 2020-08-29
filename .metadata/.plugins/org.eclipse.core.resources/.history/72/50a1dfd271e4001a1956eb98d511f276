@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+	<bean id="xml1" class = "kr.co.jaehyeon.beans.TestBean1">
+		<constructor-arg value="100" type="int" index="0"></constructor-arg>
+		<constructor-arg value="문자열" index="1"></constructor-arg>
+	</bean>
+
+	<bean id="data_bean1" class = "kr.co.jaehyeon.beans.DataBean1"></bean>
+</beans>

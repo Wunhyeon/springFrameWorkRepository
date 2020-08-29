@@ -1,0 +1,9 @@
+package kr.co.jaehyeon.beans;
+
+public class TestBean {
+	
+	public void method1() {
+		System.out.println("method1 호출");
+	}
+
+}

@@ -1,0 +1,25 @@
+package kr.co.jaehyeon.config;
+
+import org.springframework.context.annotation.Bean;
+
+import kr.co.jaehyeon.beans.TestBean1;
+import kr.co.jaehyeon.beans.TestBean2;
+
+public class BeanConfigClass {
+	
+	@Bean
+	public TestBean1 java1() {
+		return new TestBean1();
+	}
+	
+	@Bean
+	public TestBean2 java2() {
+		return new TestBean2();
+	}
+	
+	@Bean
+	public TestBean2 java3() {
+		return new TestBean2();
+	}
+
+}

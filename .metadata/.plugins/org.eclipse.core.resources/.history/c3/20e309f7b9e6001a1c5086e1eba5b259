@@ -1,0 +1,8 @@
+package kr.co.jaehyeon.db;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class JdbcDAO {
+
+}

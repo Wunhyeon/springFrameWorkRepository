@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+						
+	<bean id="xml1" class="kr.co.jaehyeon.beans.TestBean1"></bean>
+
+	<bean id="xml2" class="kr.co.jaehyeon.beans.TestBean2"></bean>
+
+	<bean id="xml3" class="kr.co.jaehyeon.beans2.TestBean1"></bean>
+	
+	<bean id="advisor1" class= "kr.co.jaehyeon.advisor.AdvisorClass"></bean>
+	
+	<aop:config>
+		<aop:aspect ref="advisor1">
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1 클래스, method1메서드, 매개변수 없음 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1())"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메서드, 정수형 매개변수 1개 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(int))"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메서드, String 타입 매개변수 1개  -->
+			<aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(java.lang.String))"/> <!-- 매개변수 넣어줄 때 java.lang.String이 아니라 걍 String으로 넣어줘도 됨. -->
+		
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메서드, 모든 타입의 매개변수 1개 -->
+			<aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(*))"/>
+			<!-- 매개변수 1개, 즉 모든 타입의 매개변수 1개를 의미한다. 따라서 매개변수가 하나이상 있는 모든 메서드를 불러온다. 만약 public void method1()처럼 매개변수를 받지않으면 aop를 안불러온다.
+				또, public void method1(int a1, int a2)처럼 매개변수를2개 받는 것도 안불러온다. -->
+				
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메서드, 정수형 매개변수 2개 -->	
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(int,int))"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메소드, 정수형 매개변수 1개, String타입 매개변수 1개 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(int,java.lang.String))"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메소드, 타입에 관계없이 매개변수 2개 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(*,*))"/> -->
+			
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메소드, 앞 매개변수 정수형, 뒤 매개변수는 타입관계없음 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(int,*))"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, method1메서드, 모든 타입의 매개변수 0개이상 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.method1(..))"/> -->
+			<!-- 개수, 타입에 관계없이 모두 -->
+		
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans.TestBean1클래스, 모든 메서드 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.TestBean1.*(..))"/> -->
+			
+			<!--반환타입이 void, kr.co.jaehyeon.beans 패키지의 모든클래스, 모든 메서드 -->
+			<aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.*.*(..))"/>
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.beans패키지 내에 있는 모든 클래스의 method1() -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.beans.*.method1(..))"/> -->
+			
+			<!-- 반환타입이 void, kr.co.jaehyeon.의 모든 패키지의 모든클래스, 모든 메서드 -->
+			<!-- <aop:pointcut id="point1" expression="execution(void kr.co.jaehyeon.*.*.*(..))"/> -->
+			
+			<!-- 반환타입이 void, 모든 패키지, 모든 클래스, 모든 메서드(단 xml에 등록된 bean에 한해서) -->
+			<!-- <aop:pointcut id="point1" expression="execution(void *.*(..))"/> -->
+			
+			<!-- 반환타입이 int인 모든 패키지, 모든 클래스, 모든 메서드 -->
+			<!-- <aop:pointcut id="point1" expression="execution(int *.*(..))"/> -->
+			
+			<!-- 모든 반환타입, 모든 패키지, 모든 클래스, 모든 메서드 -->
+			<aop:pointcut id="point1" expression="execution(* *.*(..))"/>
+			
+			<!-- 모든 패키지의 경우 이렇게도 가능 -->
+			<aop:pointcut id="point1" expression="execution(* *(..))"/>
+			
+			<!-- 모든 패키지의 method1() -->
+			<aop:pointcut id="point1" expression="execution(* method1(..))"/>
+			
+			<!-- 모든 패키지의 경우 그냥 생략하면 됨. -->
+			
+			<aop:before method="beforeMethod" pointcut-ref="point1"/>
+		
+		</aop:aspect>
+	</aop:config>
+</beans>

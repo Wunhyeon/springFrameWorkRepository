@@ -1,0 +1,22 @@
+package kr.co.jaehyeon.beans;
+
+import org.springframework.beans.factory.annotation.Required;
+
+public class TestBean1 {
+
+	private int data1;
+
+	public int getData1() {
+		return data1;
+	}
+
+	@Required	//반드시 주입해야 할 프로퍼티로 설정한다. 
+	public void setData1(int data1) {
+		this.data1 = data1;
+	}
+	/*
+	 * 스프링 5버전 전까지는 Required어노테이션이 붙은 빈에 주입하지 않으면 오류가 발생했지만 5버전 이후로 안쓰는 어노테이션이 되어
+	 * 오류가 발생하지 않는다. 반드시 주입해야 할 프로퍼티가 있다면 생성자를 통해 주입하도록 하고 있다.
+	 */
+	
+}

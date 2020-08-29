@@ -1,0 +1,17 @@
+package kr.co.jaehyeon.config;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = {"kr.co.jaehyeon.beans"})
+public class BeanConfigClass {
+	
+	//data source
+	@Bean
+	public BasicDataSource dataSource() {
+		BasicDataSource source = new BasicDataSource();
+	}
+
+}

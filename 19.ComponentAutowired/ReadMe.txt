@@ -1,0 +1,1 @@
+@Resource는 @Autowired와 @Qualifier("bean아이디")를 합쳐놓은 것과 같다.

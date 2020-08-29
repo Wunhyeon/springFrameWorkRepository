@@ -1,0 +1,29 @@
+package kr.co.jaehyeon.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import kr.co.jaehyeon.beans.DataBean1;
+import kr.co.jaehyeon.beans.TestBean1;
+
+@Configuration
+public class BeanConfigClass {
+	
+	@Bean
+	public TestBean1 java1() {
+		return new TestBean1();
+	}
+	
+//	@Bean
+//	public TestBean1 java1() {
+//		TestBean1 t1 = new TestBean1();
+//		t1.setData1(100);
+//		return t1;
+//	}
+	
+	@Bean
+	public DataBean1 data_bean1() {
+		return new DataBean1();
+	}
+
+}

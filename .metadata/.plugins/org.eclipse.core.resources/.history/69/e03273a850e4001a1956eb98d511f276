@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+	<bean id="xml1" class="kr.co.jaehyeon.beans.TestBean1"></bean>
+	<bean id="xml2" class="kr.co.jaehyeon.beans.TestBean2" lazy-init="true"></bean>
+	<!-- lazy-init="true"를 넣어주게 되면 xml을 로딩할 때 객체 생성하는 것이 아니라, getBean()메서드를 호출할 때
+	객체가 생성이 된다. 그리고 singleTon이기 때문에 이 아이디를 가지고 getBean()메소드를 호출할 때마다
+	객체를 생성하는 것이 아니라 getBean()메소드를 최초로 호출할 때 객체가 생성이 됨. 그리고 그 다음부터는 계속 같은 주소값을
+	사용하게 된다.
+	 -->
+	
+</beans>

@@ -1,0 +1,8 @@
+package kr.co.jaehyeon.beans2;
+
+import org.springframework.stereotype.Component;
+
+@Component("bean4")		//이름으로 등록
+public class TestBean4 {
+
+}

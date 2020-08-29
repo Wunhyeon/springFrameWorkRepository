@@ -1,0 +1,10 @@
+package kr.co.jaehyeon.advisor;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Aspect	//AOP설정.
+@Component
+public class AdvisorClass {
+
+}

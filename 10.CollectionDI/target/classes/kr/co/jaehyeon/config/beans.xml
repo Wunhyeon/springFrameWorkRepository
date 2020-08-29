@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+	<bean id="t1" class="kr.co.jaehyeon.beans.TestBean">
+		<!-- 제네릭이 String인 List -->
+		<property name="list1">
+			<list>
+				<value>문자열 1</value>
+				<value>문자열 2</value>
+				<value>문자열 3</value>
+			</list>
+		</property>
+		<!-- 제네릭이 Integer인 List -->
+		<property name="list2">
+			<list>
+				<value>1</value>
+				<value type="int">2</value>	<!-- type을 지정해줄 수 도 있다. -->
+				<value>3</value>
+			</list>
+		</property>
+		<!-- 제네릭이 DataBean인 List -->
+		<property name="list3">
+			<list>
+				<bean class = "kr.co.jaehyeon.beans.DataBean"></bean>
+				<bean class = "kr.co.jaehyeon.beans.DataBean"></bean>
+				<ref bean="data_bean"></ref>
+				<ref bean="data_bean"></ref>
+			</list>
+		</property>
+		<!-- 제네릭이 String인 set  -->
+		<property name="set1">
+			<set>
+				<value>문자열1</value>
+				<value>문자열2</value>
+				<value>문자열3</value>
+				<value>문자열3</value>
+				<value>문자열3</value>
+			</set>
+		</property>
+		<!-- 제네릭이 Integer인 set -->
+		<property name="set2">
+			<set>
+				<value type="int">100</value>
+				<value type="int">200</value>
+				<value type="int">300</value>
+				<value type="int">300</value>
+				<value type="int">300</value>
+				<!-- set은 중복된 값이 못들어 가기 때문에 출력 결과는 100,200,300이 나옴. -->
+			</set>
+		</property>
+		<!-- 제네릭이 DataBean인 set -->
+		<property name="set3">
+			<set>
+				<bean class="kr.co.jaehyeon.beans.DataBean"></bean>
+				<bean class="kr.co.jaehyeon.beans.DataBean"></bean>
+				<ref bean="data_bean"></ref>
+				<ref bean="data_bean"></ref>
+				<!-- 마지막 ref로 bean의 id를 통해 값을 주입해준 2개는 결과가 하나만 출력되는 것을 볼 수 있다.
+				Spring을 통해서 set에 객체를 주입을 할 때는 id가 똑같은 bean을 주입을 하면 하나만 주입이 된다.
+				(prototype이건 singleton이건 관계없이 id가 똑같은 bean을 두개이상 주입할 수 없다.)
+				set에다가 똑같은 클래스 타입의 bean을 많이 주입을 해주어야 할때에는 위의 2개처럼 bean태그를 이용해서
+				객체를 직접 생성해서 주입해야 한다. -->
+			</set>
+		</property>
+		
+		<!-- map -->
+		<property name="map1">
+			<map>
+				<entry key="a1" value="문자열"></entry>
+				<entry key="a2" value="100" value-type="int"></entry>
+				<!-- 객체를 넣어줄 때 -->
+				<entry key="a3">
+					<bean class="kr.co.jaehyeon.beans.DataBean"></bean>
+				</entry>
+				<entry key="a4" value-ref="data_bean"></entry>
+				<!-- 리스트를 넣어줄 때 -->
+				<entry key="a5">
+					<list>
+						<value>문자열1</value>
+						<value type="int">100</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+		
+		<!-- 문자값만 저장해서 사용할 수  있는 properties type -->
+		<property name="prop1">
+			<props>
+				<prop key="p1">문자열1</prop>
+				<prop key="p2">문자열2</prop>
+				<prop key="p3">문자열3</prop>
+			</props>
+		
+		</property>
+		
+	</bean>
+	
+	<bean id="data_bean" class="kr.co.jaehyeon.beans.DataBean" scope="prototype"></bean>
+	
+</beans>

@@ -1,0 +1,15 @@
+package kr.co.jaehyeon.db;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JdbcDAO {
+	//데이터베이스 처리에 관련된 코드
+	
+	//데이터베이스에 접속해서 쿼리를 전달할 객체
+	//JDBC 관리 객체를 주입 받는다.
+	@Autowired //BeanConfigClass에서 등록한 Bean이 반환한 것을 자동주입
+	private JdbcTemplate db;
+}

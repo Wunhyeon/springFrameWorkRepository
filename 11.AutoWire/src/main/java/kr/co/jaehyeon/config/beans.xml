@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName"
+	>
+	<!-- autowire가 설정되어 있는 태그는 자기 자신에게 설정되어 있는 것을 따르고, 	설정이 안되어있는 bean들은 default-autowire를 따른다. -->	
+						
+	<bean id="obj1" class="kr.co.jaehyeon.beans.TestBean1">
+		<property name="data1" ref="data_bean1"></property>
+		<property name="data2" ref="data_bean1"></property>
+	</bean>
+	
+	<bean id="data_bean1" class="kr.co.jaehyeon.beans.DataBean1" scope="prototype"></bean>
+
+	<!-- autowire="byName"은 bean중에 id가 같은 값을 찾아 값을 넣어준다. -->
+	<bean id="obj2" class="kr.co.jaehyeon.beans.TestBean1" autowire="byName"></bean> <!-- TestBean1에 data1,data2인 객체를 찾아 bean의 id가 data1, data2인 값을 넣어준다. -->
+
+	<bean id="data1" class="kr.co.jaehyeon.beans.DataBean1"></bean>
+	<bean id="data2" class="kr.co.jaehyeon.beans.DataBean1"></bean>
+
+	<bean id="obj3" class="kr.co.jaehyeon.beans.TestBean2" autowire="byType"></bean>
+	
+	<!-- autowird="byType"으로 자동주입하는 경우에는 타입으로 넣어주기 때문에 id가 필요없다. -->
+	<!-- <bean class="kr.co.jaehyeon.beans.DataBean2"></bean> -->
+	<!-- <bean class="kr.co.jaehyeon.beans.DataBean2"></bean> -->
+	<!-- autowird="byType"으로 자동주입하는 경우, 동일한 타입의 bean이 두개이상 존재하면 오류가 발생한다.
+		이때는 byType이 아니라 byName으로 주입해줘야 한다. -->
+	
+	
+	<bean id="data_bean2" class="kr.co.jaehyeon.beans.DataBean2"></bean>
+	
+	<bean id="obj4" class="kr.co.jaehyeon.beans.TestBean3">
+		<constructor-arg ref="data_bean2" index="0"></constructor-arg>
+		<constructor-arg ref="data_bean2" index="1"></constructor-arg>
+	</bean>
+	
+	<bean id="obj5" class="kr.co.jaehyeon.beans.TestBean3" autowire="constructor"></bean>
+	
+	<bean id="obj6" class="kr.co.jaehyeon.beans.TestBean3">
+		<constructor-arg value="100" index="0" type="int"></constructor-arg>
+		<constructor-arg value="문자열" index="1" type="java.lang.String"></constructor-arg>
+		<constructor-arg ref="data_bean2" index="2"></constructor-arg>
+		<constructor-arg ref="data_bean2" index="3"></constructor-arg>
+	</bean>
+	<!-- 자동주입을 이용할 때는 문자열이나 정수값을 주입할 수 없다. 객체 주소값만 주입이 가능하다. 그래서 참조변수를 제외한 나머지들은 직접 명시를 해주어야 한다. -->
+	
+	<bean id="obj7" class="kr.co.jaehyeon.beans.TestBean3" autowire="constructor">
+		<constructor-arg value="200" index="0" type="int"></constructor-arg>
+		<constructor-arg value="문자열2" index="1"></constructor-arg>
+	</bean>
+	
+	
+	
+	<bean id="obj8" class="kr.co.jaehyeon.beans.TestBean1"></bean>
+	
+	<!-- default-autowire가 설정되어 있지만 주입을 하지 않겠다 하는 경우↓ autowire="no" -->
+	<bean id="obj9" class="kr.co.jaehyeon.beans.TestBean1" autowire="no"></bean>
+	
+</beans>

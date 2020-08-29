@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- xml을  로딩할 때 자동으로 객체가 생성된다. -->
+	<!-- 현재 까지의 학습 진도 상 id 속성이 없다면 객체의 주소값을 받아서 사용할 수 없다.-->
+	<bean class="kr.co.jaehyeon.beans.TestBean"></bean>		
+	<!-- 생성된 객체의 주소값, 즉 ioc컨테이너가 가지고 있는 객체의 주소값을 받으려면 id란 속성이 있어야 한다.
+	getBean()메소드를 통해서 id를 지정을 하게 되면, 해당 id를 가지고 있는 bean의 주소값을 받아올 수 있다.
+	자동주입을 하게 되면 id가 필요없다. -->
+	
+	
+	<!-- xml을  로딩할 때 자동으로 객체가 생성된다. -->
+	<!-- id 속성에 이름을 부여하면 getBean 메소드를 통해 객체의 주소값을 받아 사용할 수 있다. -->
+	<!-- 한번 생성된 객체는 더이상 생성되지 않는다. SingleTon 따라서 getBean()메소드를 사용해도
+		객체를 새로 생성하는 것이 아니라 같은 주소값을 주게 된다.-->
+	<bean id="test1" class="kr.co.jaehyeon.beans.TestBean"></bean>
+	
+	<!-- lazy-init에 true값을 넣어주면 xml을 로딩할 때 객체를 생성하지 않는다. 그리고 getBean()메소드를 호출할 때 객체가 생성된다. (생략하면 default로 false값이 들어감) -->
+	<!-- getBean 메소드를 호출할 때 객체가 생성되며 singleTon이기 때문에 객체는 하나만 생성된다.  -->
+	<!-- 하지만 test1과 test2의 주소값은 다르다. 다른 bean이기 때문 -->
+	<bean id="test2" class = "kr.co.jaehyeon.beans.TestBean" lazy-init="true"></bean>
+	
+	<!-- scope에 prototype을 넣어주면 xml을  로딩할 때 객체가 생성되지 않는다. 또, getBean() 메소드를 호출할 때 마다 새로운 객체를 생성해서 반환한다.-->
+	<bean id="test3" class="kr.co.jaehyeon.beans.TestBean" scope="prototype"></bean>
+</beans>

@@ -1,0 +1,12 @@
+package kr.co.jaehyeon.advisor;
+
+public class AdvisorClass {
+
+	public void beforeMethod() {
+		System.out.println("beforeMethod호출");
+	}
+	
+	public void afterMethod() {
+		System.out.println("after메소드 호출");
+	}
+}

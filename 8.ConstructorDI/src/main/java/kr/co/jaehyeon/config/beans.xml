@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+
+	<bean id="obj1" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true"></bean>
+
+	<bean id="obj2" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="100" type="int"></constructor-arg> <!-- 100이라는 값을 생성자의 매개변수로 집어넣겠다는 뜻 -->
+		<!-- 이렇게 bean을 정의할 때 생성자나 다른걸 지정해서 값을 넣어주는 것을 주입이라고 한다. -->
+		<!-- 값을 100으로 넣으면 100은 Intger type이 될수도 있고 double type이 될수도 있다. 그런데 스프링에서는 double type을 더 우선시한다.
+		그래서 생성자가 int형 받는거 1개랑 double형 받는거 1개가 있으면 constructor-arg value="100"을 double형으로 해석해
+		double형을 받는 생성자가 실행된다. 그리고 double보다 String이 우선시 된다.(String이 가장 우선시된다.) 
+		따라서, 값을 넣을 때 type을 지정해주는 것이 좋다. Sting은 가장 우선시 되기 때문에 type값을 안넣어줘도 되지만,
+		넣어준다면 자바에서는 문자열이 String Class type이기 때문에 객체에 타입을 넣어주겠다고 생각해 패키지를 포함한 클래스타입을 지정해주면 된다.
+		근데 사실 그냥 String으로만 넣어줘도 잘 됨.
+		-->
+	</bean>
+	
+	<bean id="obj3" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="111.11" type="double"></constructor-arg>
+	</bean>
+	
+	<bean id="obj4" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="문자열" type="String"></constructor-arg>
+	</bean>
+	
+	<bean id="obj5" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="111" type="int"></constructor-arg>
+		<constructor-arg value="11.11" type="double"></constructor-arg>
+		<constructor-arg value="안녕하세요" type="java.lang.String"></constructor-arg>
+	</bean>
+	
+	<!-- TestBean클래스에는 현재 String, int, double형의 순서대로 매개변수를 받는 생성자가 없다.
+	하지만 오류가 나지 않는다. 먼저, 아래의 bean처럼 String, int, double형의 순서대로 값을 주입할 수 있는 생성자를 찾는다.
+	그런데 만약에 그 생성자가 없다고 한다면, 이 값들을 모두 주입할 수 있는 생성자를 찾는다. 매개변수의 순서와 관계없이,
+	정수 하나, 실수하나, 문자열하나가 정의되어 있는 생성자를 찾아 그 생성자에다가 주입을 하게 된다.
+	만약 3가지 타입을 모두 주입할 수 있는 생성자가 없다면 오류가 발생하게 된다.
+	가장 좋은것은  생성자의 순서대로 값을 넣어주는 것이다. -->
+	<bean id="obj6" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="반갑습니다" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="300" type="int"></constructor-arg>
+		<constructor-arg value="33.33" type="double"></constructor-arg>
+	</bean>
+	
+	<!-- 만약에 정수값2개를 받는 생성자가 있을 경우, 어떤 값을 몇번째에 넣겠다 이런 것을 정하고 싶을 때,
+	index를 정의할 수 가 있다. 보통 동일한 타입을 받는 생성자가 여러개가 있을 경우에 많이 쓴다.
+	일단 순서를 정해주지 않으면 위부터 순서대로 들어가지만 그 순서를 바꾸고 싶을때 index를 써준다.
+	index는 0부터 시작 -->
+	<bean id="obj7" class="kr.co.jaehyeon.beans.TestBean" lazy-init="true">
+		<constructor-arg value="22.2" type="double" index="1"></constructor-arg>
+		<constructor-arg value="111" type="int" index="0"></constructor-arg>
+		<constructor-arg value="안녕하세요" type="java.lang.String" index="2"></constructor-arg>
+	</bean>
+	
+	<bean id="obj8" class="kr.co.jaehyeon.beans.TestBean2" lazy-init="true">
+		<constructor-arg>
+			<!-- 값을 주입할 때는 값을 직접 넣어주면 되지만, 객체를 주입할 때는 객체를 먼저 생성한 후에 넣어줘야 한다. -->
+			<bean class="kr.co.jaehyeon.beans.DataBean"></bean>
+		</constructor-arg>
+		<constructor-arg type="kr.co.jaehyeon.beans.DataBean">	<!-- 원한다면 type을 넣어줄 수도 있다. -->
+			<bean class="kr.co.jaehyeon.beans.DataBean"></bean>
+		</constructor-arg>
+	</bean>
+	
+	
+	<!-- 이미 정의되어 있는 bean을 주입하고 싶을 때 -->
+	<bean id="data_bean" class="kr.co.jaehyeon.beans.DataBean" scope="prototype"></bean>
+	
+	<bean id="obj9" class="kr.co.jaehyeon.beans.TestBean2" lazy-init="true">
+		<constructor-arg ref="data_bean"></constructor-arg>
+		<constructor-arg ref="data_bean"></constructor-arg>
+	</bean>
+</beans>

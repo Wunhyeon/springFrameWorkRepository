@@ -1,0 +1,14 @@
+package kr.co.jaehyeon.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import kr.co.jaehyeon.config.BeanConfigClass;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfigClass.class);
+	}
+
+}

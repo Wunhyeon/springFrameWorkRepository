@@ -1,0 +1,14 @@
+package kr.co.jaehyeon.mapper;
+
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+
+public interface MapperInterface {
+	
+	//매퍼클래스의 역할을 해준다.(어떤 컬럼의 값을 빈의 어디에다가 넣을것인지)
+	@Results({
+		@Result(column="int_data", property="int_data"),	//int_data컬럼의 데이터 값은 지정된 빈의 int_data에다가 넣겠다.
+		
+	})
+
+}

@@ -1,0 +1,15 @@
+package kr.co.jaehyeon.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import kr.co.jaehyeon.config.BeanConfigClass;
+
+public class MainClass {
+	
+	public void main(String[] args) {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfigClass.class);
+		
+		ctx.close();
+	}
+
+}

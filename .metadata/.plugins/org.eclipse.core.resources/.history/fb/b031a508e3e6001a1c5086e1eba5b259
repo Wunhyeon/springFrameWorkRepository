@@ -1,0 +1,21 @@
+package kr.co.jaehyeon.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
+import kr.co.jaehyeon.beans.JdbcBean;
+
+public interface MapperInterface {
+	
+	//매퍼클래스의 역할을 해준다.(어떤 컬럼의 값을 빈의 어디에다가 넣을것인지)
+	@Results({
+		@Result(column="int_data", property="int_data"),	//int_data컬럼의 데이터 값은 지정된 빈의 int_data에다가 넣겠다.
+		@Result(column = "str_data", property = "str_data")
+	})
+	@Select("select int_data, str_data from jdbc_table")	//쿼리문
+	List<JdbcBean> select_data();	//이 쿼리문을 실행하기 위해 사용할 메서드를 추상메서드로 정의해줌. 이 메소드를 호출하면 위의 쿼리문이 실행된다.
+
+}

@@ -1,0 +1,5 @@
+package kr.co.jaehyeon.config;
+
+public class BeanConfigClass {
+
+}

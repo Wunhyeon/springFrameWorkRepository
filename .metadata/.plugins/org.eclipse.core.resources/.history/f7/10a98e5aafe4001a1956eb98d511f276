@@ -1,0 +1,13 @@
+package kr.co.jaehyeon.beans;
+
+import javax.annotation.Resource;
+
+public class TestBean6 {
+	
+	@Resource(name = "data1")	//bean의 이름과 다를 경우에
+	private DataBean1 data100;
+	
+	@Resource(name = "data2")
+	private DataBean2 data200;
+
+}

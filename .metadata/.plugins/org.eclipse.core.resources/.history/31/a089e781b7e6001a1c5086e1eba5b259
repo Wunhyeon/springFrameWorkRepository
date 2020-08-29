@@ -1,0 +1,17 @@
+package kr.co.jaehyeon.config;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@Configuration
+public class BeanConfigClass {
+
+	//데이터베이스에 접속해서 쿼리를 전달하는 빈을 등록한다.
+	@Bean	//외부라이브러리에 있는 클래스들을 bean으로 등록할 때는 configuration파일에서 bean어노테이션을 등록해주고, 직접 만드는 클래스를 등록할 때는 component
+	public JdbcTemplate db() {
+		//데이터 소스(접속 정보를 가지고 있는 객체 -DBCP)
+		BasicDataSource source = new BasicDataSource();
+	}
+}

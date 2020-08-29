@@ -1,0 +1,13 @@
+package kr.co.jaehyeon.main;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("kr/co/jaehyeon/config/beans.xml");
+		
+		ctx.close();
+	}
+
+}

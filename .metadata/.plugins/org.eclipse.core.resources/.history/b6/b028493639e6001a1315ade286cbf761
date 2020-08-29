@@ -1,0 +1,34 @@
+package kr.co.jaehyeon.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import kr.co.jaehyeon.beans.TestBean1;
+import kr.co.jaehyeon.config.BeanConfigClass;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		ClassPathXmlApplicationContext ctx1 = new ClassPathXmlApplicationContext("kr/co/jaehyeon/config/beans.xml");
+		
+		TestBean1 xml1 = ctx1.getBean(TestBean1.class);
+		try {
+			xml1.method1();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ctx1.close();
+		
+		System.out.println("==============================");
+		
+		AnnotationConfigApplicationContext ctx2 = new AnnotationConfigApplicationContext(BeanConfigClass.class);
+		TestBean1 java1 = ctx2.getBean(TestBean1.class);
+		java1.method1();
+		
+		
+		
+		ctx2.close();
+	}
+
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+						
+	
+	<bean id="xml1" class="kr.co.jaehyeon.beans.TestBean"></bean>
+
+	<bean id="advisor1" class="kr.co.jaehyeon.advisor.AdvisorClass"></bean>
+	
+	<aop:config>
+		<aop:aspect ref="advisor1">
+			<aop:pointcut id="point1" expression="exection(*method1())"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- aspect하나가 관심사를 설정을 하고 여러가지 메소드가 위빙될 메소드를 설정하고 이런다. 
+	호출될 메서드가 어쩔때는 이게호출되고 다른때는 저게 호출되고 이런식으로 하려면 aspect를 여러개 만들면 된다.
+	expression="exection(*method1())" 이게 관심사로 등록을 한 것.
+	모든 패키지의 모든 클래스에 있는 method1을 호출하는 행위를 관심사로 설정한 것.
+	패키지 관계없이 클래스 관계없이 method1()이 호출되면 무조건 동작을 하게끔 설정한 것 -->
+</beans>

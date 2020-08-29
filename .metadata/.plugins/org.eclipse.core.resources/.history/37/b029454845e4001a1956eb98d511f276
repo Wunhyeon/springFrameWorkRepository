@@ -1,0 +1,12 @@
+package kr.co.jaehyeon.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class BeanConfigClass {
+
+	/*
+	 * xml파일의 경우 정해진 대로만 작업을 해야하지만, 자바파일의 경우, 값을 주입한다던가 이런 방식들은 정해져 있지만, 주입할 값들을 구하는
+	 * 데 있어서 약간의 작업을 추가적으로 할 수 있는 장점을 가지고 있다.
+	 */
+}

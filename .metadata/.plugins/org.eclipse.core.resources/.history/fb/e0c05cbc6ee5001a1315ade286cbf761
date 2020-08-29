@@ -1,0 +1,33 @@
+package kr.co.jaehyeon.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import kr.co.jaehyeon.beans.DataBean3;
+import kr.co.jaehyeon.beans.DataBean4;
+import kr.co.jaehyeon.beans.DataBean5;
+import kr.co.jaehyeon.beans.TestBean2;
+
+@Configuration
+@ComponentScan(basePackages = "kr.co.jaehyeon.beans")
+public class BeanConfigClass {
+	
+	@Bean
+	public DataBean3 obj4() {
+		return new DataBean3();
+	}
+	
+	@Bean
+	public DataBean3 obj5() {
+		return new DataBean3();
+	}
+	
+	//세팅해 놓은 값들이 아니라 다른 값들을 가지고 싶을때 객체를 생성할 때 직접 주입해주면 된다.
+	@Bean
+	public TestBean2 java2() {
+		TestBean2 t2 = new TestBean2(333,"문자열2",new DataBean4(), new DataBean5());
+		return t2;
+	}
+
+}
